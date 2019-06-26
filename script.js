@@ -53,7 +53,7 @@ function onPlayerStateChange(event) {
             if((player.getPlayerState() == -1) && videoId == nowPlayingVideoId){
                 playNext()
             }
-        }, 1000)
+        }, 5000)
     }
     // 영상 끝났을 때 다음곡 재생
     if(player.getPlayerState() == 0){
