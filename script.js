@@ -34,7 +34,10 @@ function onYouTubeIframeAPIReady() {
     });
 }
 
+// iframe 로딩됬을때
+// 거의 첫 시작 부분
 function onPlayerReady(event) {
+    // 음악리스트 없으면 default음악 재생
     if(!musicListSaveCheck()){
         player.loadVideoById({
             videoId: 'yyzYr21MumM'
@@ -263,12 +266,10 @@ function musicListSaveCheck() {
     // let storedMusicList = JSON.parse(getCookie('musicList'));
     let storedMusicList = JSON.parse(localStorage.getItem('musicList'));
     if(localStorage.getItem('repeatStatus') == "true"){
-        console.log(localStorage.getItem('repeatStatus'))
         repeatStatus = true
         repeatBtn.style.color = '#cc3232'
     }
     if(localStorage.getItem('shuffleStatus') == "true"){
-        shuffleList()
         shuffleStatus = true
         shuffleBtn.style.color = '#cc3232'
     }
@@ -281,6 +282,7 @@ function musicListSaveCheck() {
             addMusicList(storedMusicList[index].videoTitle, storedMusicList[index].videoId);
         }
         //addYouTubePlayList();
+        shuffleList()
         return true;
     }
     
@@ -334,6 +336,7 @@ function playNext(){
                 loadVideoByVideoId(nowPlayingIndex, nowPlayingVideoId);
             }
         }
+    // 순서 섞여있지 않을 때
     } else {
         if(nowPlayingIndex < musicList.length - 1){
             nowPlayingIndex++;
